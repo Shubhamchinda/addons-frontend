@@ -3,7 +3,7 @@ import deepcopy from 'deepcopy';
 import invariant from 'invariant';
 
 import { createInternalAddon } from 'core/reducers/addons';
-import { getAddonTypeFilter } from 'core/utils';
+import { ADDON_TYPE_STATIC_THEME } from 'core/constants';
 import type { AddonType, ExternalAddonType } from 'core/types/addons';
 
 type AddonId = number;
@@ -200,7 +200,7 @@ export const getAddonsForAuthorIds = (
           return addonsByAuthorsState.byAddonId[id];
         })
         .filter((addon) => {
-          const addonTypeFilter = getAddonTypeFilter(addonType);
+          const addonTypeFilter = ADDON_TYPE_STATIC_THEME;
           return addonType ? addonTypeFilter.includes(addon.type) : true;
         })
         .filter((addon) => {

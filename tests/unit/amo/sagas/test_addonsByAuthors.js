@@ -8,9 +8,9 @@ import addonsByAuthorsReducer, {
 } from 'amo/reducers/addonsByAuthors';
 import addonsByAuthorsSaga from 'amo/sagas/addonsByAuthors';
 import {
-  ADDON_TYPE_THEME,
   SEARCH_SORT_POPULAR,
   SEARCH_SORT_TRENDING,
+  ADDON_TYPE_STATIC_THEME,
 } from 'core/constants';
 import * as searchApi from 'core/api/search';
 import apiReducer from 'core/reducers/api';
@@ -20,7 +20,6 @@ import {
   dispatchClientMetadata,
   fakeAddon,
 } from 'tests/unit/helpers';
-import { getAddonTypeFilter } from 'core/utils';
 
 describe(__filename, () => {
   let errorHandler;
@@ -62,7 +61,7 @@ describe(__filename, () => {
       .withArgs({
         api: state.api,
         filters: {
-          addonType: getAddonTypeFilter(ADDON_TYPE_THEME),
+          addonType: ADDON_TYPE_STATIC_THEME,
           author: authorIds.sort().join(','),
           exclude_addons: undefined, // `callApi` will internally unset this
           page: '1',
@@ -75,12 +74,12 @@ describe(__filename, () => {
 
     _fetchAddonsByAuthors({
       authorIds,
-      addonType: getAddonTypeFilter(ADDON_TYPE_THEME),
+      addonType: ADDON_TYPE_STATIC_THEME,
       pageSize,
     });
 
     const expectedLoadAction = loadAddonsByAuthors({
-      addonType: getAddonTypeFilter(ADDON_TYPE_THEME),
+      addonType: ADDON_TYPE_STATIC_THEME,
       addons,
       authorIds,
       count: addons.length,

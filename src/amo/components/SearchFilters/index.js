@@ -9,7 +9,6 @@ import { compose } from 'redux';
 import {
   ADDON_TYPE_EXTENSION,
   ADDON_TYPE_OPENSEARCH,
-  ADDON_TYPE_THEME,
   OS_LINUX,
   OS_MAC,
   OS_WINDOWS,
@@ -18,6 +17,7 @@ import {
   SEARCH_SORT_RECOMMENDED,
   SEARCH_SORT_RELEVANCE,
   SEARCH_SORT_TOP_RATED,
+  ADDON_TYPE_STATIC_THEME,
   SEARCH_SORT_TRENDING,
   SEARCH_SORT_UPDATED,
 } from 'core/constants';
@@ -25,7 +25,6 @@ import { withErrorHandler } from 'core/errorHandler';
 import log from 'core/logger';
 import translate from 'core/i18n/translate';
 import { convertFiltersToQueryParams, paramsToFilter } from 'core/searchUtils';
-import { getAddonTypeFilter } from 'core/utils';
 import ExpandableCard from 'ui/components/ExpandableCard';
 import Select from 'ui/components/Select';
 
@@ -140,9 +139,7 @@ export class SearchFiltersBase extends React.Component {
       { children: i18n.gettext('Search Tool'), value: ADDON_TYPE_OPENSEARCH },
       {
         children: i18n.gettext('Theme'),
-        value: getAddonTypeFilter(ADDON_TYPE_THEME, {
-          _config: this.props._config,
-        }),
+        value: ADDON_TYPE_STATIC_THEME,
       },
     ];
   }

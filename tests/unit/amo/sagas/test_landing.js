@@ -16,6 +16,7 @@ import {
   ADDON_TYPE_THEME,
   SEARCH_SORT_TRENDING,
   SEARCH_SORT_TOP_RATED,
+  ADDON_TYPE_STATIC_THEME,
   SEARCH_SORT_RANDOM,
 } from 'core/constants';
 import apiReducer from 'core/reducers/api';
@@ -25,7 +26,6 @@ import {
   dispatchClientMetadata,
   fakeAddon,
 } from 'tests/unit/helpers';
-import { getAddonTypeFilter } from 'core/utils';
 
 describe(__filename, () => {
   describe('fetchLandingAddons', () => {
@@ -93,7 +93,7 @@ describe(__filename, () => {
         } = testConfig;
         const baseArgs = { api: apiState };
         const baseFilters = {
-          addonType: getAddonTypeFilter(addonType),
+          addonType: ADDON_TYPE_STATIC_THEME,
           page_size: pageSize,
           recommended:
             addonType === ADDON_TYPE_EXTENSION && enableFeatureRecommendedBadges
